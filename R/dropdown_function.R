@@ -1,4 +1,4 @@
-dropdown_function <- function(data, ) {
+dropdown_function <- function(data) {
 
   data <- gather(data, item, response)
 
