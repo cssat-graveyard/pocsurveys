@@ -1,11 +1,13 @@
-# packages
-library(redcapAPI)
-library(tidyr)
-library(stringr)
-library(lubridate)
-library(dplyr)
+#' Function for dealing with multiple choice data
+#'
+#' @param data
+#' @param label
+#' @param aggregate
+#'
+#' @return what does this return?
+#'
+#' @export
 
-# function
 multiple_choice <- function(data, label = TRUE, aggregate = TRUE) {
 
   labels_list <- list()

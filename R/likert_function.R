@@ -1,3 +1,13 @@
+#' Function for dealing with likert data
+#'
+#' @param data
+#' @param aggregate
+#' @param metadata
+#'
+#' @return what does this return?
+#'
+#' @export
+
 likert_function <- function(data, aggregate = TRUE, metadata = NULL){
 
   data <- gather(data, item, response)

@@ -1,7 +1,13 @@
+#' Function for dealing with yes and no data
 #'
+#' @param data
+#' @param pretty
+#' @param useNa
+#' @param aggregate
 #'
+#' @return what does this return?
 #'
-#'
+#' @export
 
 yes_no_function <- function(data, pretty = TRUE, useNA = "ifany", aggregate = TRUE){
   if(any(class(data) == "factor")){
