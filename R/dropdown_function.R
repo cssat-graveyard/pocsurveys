@@ -1,3 +1,11 @@
+#' Function for dealing with dropdown data
+#'
+#' @param data add info
+#'
+#' @return what does this return?
+#'
+#' @export
+
 dropdown_function <- function(data) {
 
   data <- gather(data, item, response)

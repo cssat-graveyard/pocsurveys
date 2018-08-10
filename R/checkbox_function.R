@@ -1,3 +1,13 @@
+#' Function for dealing with checkbox data
+#'
+#' @param data add info
+#' @param aggregate add info
+#' @param metadata add info
+#'
+#' @return what does this return?
+#'
+#' @export
+
 checkbox_function <- function(data, aggregate = TRUE, metadata = NULL) {
 
   n_col <- ncol(data)
