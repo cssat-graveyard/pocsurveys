@@ -1,9 +1,9 @@
 #' Function for dealing with yes and no data
 #'
-#' @param data
-#' @param pretty
-#' @param useNa
-#' @param aggregate
+#' @param data add info
+#' @param pretty add info
+#' @param useNa add info
+#' @param aggregate add info
 #'
 #' @return what does this return?
 #'

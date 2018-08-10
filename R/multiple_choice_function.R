@@ -1,8 +1,8 @@
 #' Function for dealing with multiple choice data
 #'
-#' @param data
-#' @param label
-#' @param aggregate
+#' @param data add info
+#' @param label add info
+#' @param aggregate add info
 #'
 #' @return what does this return?
 #'

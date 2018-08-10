@@ -1,8 +1,8 @@
 #' Function for dealing with checkbox data
 #'
-#' @param data
-#' @param aggregate
-#' @param metadata
+#' @param data add info
+#' @param aggregate add info
+#' @param metadata add info
 #'
 #' @return what does this return?
 #'
