@@ -18,7 +18,4 @@ LazyData: true
 URL: https://github.com/pocdata/pocsurveys
 BugReports: https://github.com/pocdata/pocsureys/issues
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
-
-
-
+RoxygenNote: 6.1.0
