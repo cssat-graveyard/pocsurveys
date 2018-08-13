@@ -1,4 +1,4 @@
-`pocr`
+`pocsurveys`
 ====
 
 This is an R package constructed by the POC Data Portal team for internal
