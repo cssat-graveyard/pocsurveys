@@ -6,6 +6,16 @@ Author: Who wrote it
 Maintainer: Erik Oien <oieeri26@uw.edu>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Depends:
+  stringr,
+  tidyr,
+  redcapAPI,
+  lubridate,
+  magrittr,
+  dplyr
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/pocdata/pocsurveys
+BugReports: https://github.com/pocdata/pocsureys/issues
+RoxygenNote: 6.1.0
