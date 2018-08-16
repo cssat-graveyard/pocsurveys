@@ -7,7 +7,11 @@
 likert_function(data, aggregate = TRUE, metadata = NULL)
 }
 \arguments{
-\item{metadata}{}
+\item{data}{add info}
+
+\item{aggregate}{add info}
+
+\item{metadata}{add info}
 }
 \value{
 what does this return?

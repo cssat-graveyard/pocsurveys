@@ -8,7 +8,13 @@ yes_no_function(data, pretty = TRUE, useNA = "ifany",
   aggregate = TRUE)
 }
 \arguments{
-\item{aggregate}{}
+\item{data}{add info}
+
+\item{pretty}{add info}
+
+\item{aggregate}{add info}
+
+\item{useNa}{add info}
 }
 \value{
 what does this return?
