@@ -4,10 +4,12 @@
 \alias{checkbox_function}
 \title{Function for dealing with checkbox data}
 \usage{
-checkbox_function(data, aggregate = TRUE, metadata = NULL)
+checkbox_function(data, aggregate = TRUE)
 }
 \arguments{
-\item{metadata}{}
+\item{data}{add info}
+
+\item{aggregate}{add info}
 }
 \value{
 what does this return?

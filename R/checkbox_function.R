@@ -2,13 +2,24 @@
 #'
 #' @param data add info
 #' @param aggregate add info
-#' @param metadata add info
 #'
 #' @return what does this return?
 #'
 #' @export
 
-checkbox_function <- function(data, aggregate = TRUE, metadata = NULL) {
+checkbox_function <- function(data, aggregate = TRUE) {
+
+  labels <- list()
+
+  for(i in 1:ncol(data)) {
+
+    labels[[i]] <- attributes(data[[i]])$label
+
+  }
+
+  labels_df <- as_data_frame(do.call(rbind, labels)) %>%
+    transmute(label = gsub(".*[0-9]+\\.[[:space:]]", "", V1),
+              number = row_number())
 
   n_col <- ncol(data)
 
@@ -16,35 +27,23 @@ checkbox_function <- function(data, aggregate = TRUE, metadata = NULL) {
     mutate(response = case_when(response == "Checked" ~ 1,
                                 response == "Unchecked" ~ 0,
                                 TRUE ~ NA_real_)) %>%
-    separate(name, c("field_name", "number"), sep = "___")
+    separate(name, c("field_name", "number"), sep = "___") %>%
+    mutate(number = as.integer(number)) %>%
+    left_join(labels_df, by = "number")
 
-  if(aggregate == TRUE){
-
-    data <- data %>%
-      group_by(field_name, number) %>%
-      summarise(response = sum(response, na.rm = TRUE)) %>%
-      ungroup()
-
-  } else {
-    data <- data %>%
-      mutate(number = factor(number))
-  }
-
-  if(!is.null(metadata)) {
-
-    var <- data$field_name[1]
-
-    metadata <- filter(metadata, field_name == var) %>%
-      dplyr::select(field_name, select_choices_or_calculations) %>%
-      separate(select_choices_or_calculations, as.character(c(1:n_col)), sep = " [|] ") %>%
-      gather(number, item, `1`:`6`) %>%
-      dplyr::select(-number) %>%
-      separate(item, c("number", "item"), sep = ", ")
+  if(aggregate == TRUE) {
 
     data %>%
-      left_join(metadata, by = c("field_name", "number")) %>%
-      dplyr::select(item, response)
+      group_by(number, label) %>%
+      summarise(response = sum(response, na.rm = TRUE)) %>%
+      ungroup() %>%
+      dplyr::select(-number)
+
   } else {
-    return(data)
+
+    data %>%
+      dplyr::select(label, response) %>%
+      mutate(label = factor(label))
+
   }
 }

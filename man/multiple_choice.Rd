@@ -7,7 +7,11 @@
 multiple_choice(data, label = TRUE, aggregate = TRUE)
 }
 \arguments{
-\item{aggregate}{}
+\item{data}{add info}
+
+\item{label}{add info}
+
+\item{aggregate}{add info}
 }
 \value{
 what does this return?
