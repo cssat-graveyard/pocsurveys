@@ -8,10 +8,12 @@
 #'
 #' @export
 
-multiple_choice <- function(data, label = TRUE, aggregate = TRUE) {
+# function: label = TRUE for response labels; label = FALSE for response numbers
+multiple_choice_function <- function(data, label = TRUE, aggregate = TRUE) {
 
   labels_list <- list()
 
+  # extract redcap labels of response options
   for(i in 1:ncol(data)) {
 
     labels_list[[i]] <- attributes(data[[i]])$redcapLabels
@@ -20,6 +22,7 @@ multiple_choice <- function(data, label = TRUE, aggregate = TRUE) {
 
   levels_list <- list()
 
+  # extract redcap levels (numbers) of response options
   for(i in 1:ncol(data)) {
 
     levels_list[[i]] <- attributes(data[[i]])$redcapLevels
@@ -40,11 +43,12 @@ multiple_choice <- function(data, label = TRUE, aggregate = TRUE) {
 
   if(label == TRUE) {
 
+    # check to ensure that response labels are all the same across items
     string_check <- unite(labels_list_row, choices, 1:ncol(labels_list_row), sep = ", ")
 
     if(length(unique(string_check$choices)) > 1) {
 
-      stop("Error: reponse labels must all be the same")
+      stop("Error: response labels must all be the same")
 
     }
 
@@ -58,15 +62,16 @@ multiple_choice <- function(data, label = TRUE, aggregate = TRUE) {
 
   } else {
 
+    # check to ensure that the number of response levels are all the same across items
     length_check <- gather(levels_list_col, item, response) %>%
       group_by(item) %>%
       mutate(max_responses = max(response))
 
     if(length(unique(length_check$max_responses)) > 1) {
 
-      stop("Error: number of reponse levels must all be the same")
+      stop("Error: number of response levels must all be the same")
 
-      }
+    }
 
     response <- as.character(response_cd)
 
@@ -78,7 +83,7 @@ multiple_choice <- function(data, label = TRUE, aggregate = TRUE) {
 
   }
 
-  # loop to add in dropped responses
+  # loop to add back in dropped/unused responses
   for(i in 1:length(response)) {
 
     if(!response[i] %in% names(count_data)) {
@@ -87,6 +92,7 @@ multiple_choice <- function(data, label = TRUE, aggregate = TRUE) {
     }
   }
 
+  # subset data
   if("<NA>" %in% names(count_data)) {
     count_data <- dplyr::select(count_data, response[1:length(response)], `<NA>`)
 
@@ -103,7 +109,8 @@ multiple_choice <- function(data, label = TRUE, aggregate = TRUE) {
 
   } else {
 
-     data %>%
+    # for raw data, long data is provided
+    data %>%
       mutate(response_text = factor(response_text, levels = c(response_tx)),
              response_code = factor(response_code, levels = c(response_cd)))
 
